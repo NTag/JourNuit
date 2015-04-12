@@ -1,1 +1,10 @@
-/* Empty. Add your own CSS if you like */
+/* Your application styles go here */
+body, h1 {
+    font-family: "Source Sans Pro";
+}
+.blue {
+    color: #003E5C;
+}
+.red {
+    color: #D51E26;
+}
