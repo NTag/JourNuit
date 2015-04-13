@@ -9,12 +9,14 @@
         <p>
             Vous n'êtes pas encore inscrit. Pour pouvoir utiliser <span class="blue">Jour<span class="red">&amp;</span>Nuit</span>, indiquez votre adresse email .edu.
         </p>
-        <label class="item item-input">
-            <span class="input-label">Adresse email .edu</span>
-            <input type="email">
-        </label>
-        <button class="button button-block button-positive">
-            Inscription
-        </button>
+        <form ng-submit="register()">
+            <label class="item item-input">
+                <span class="input-label">Adresse email .edu</span>
+                <input type="email" ng-model="email">
+            </label>
+            <button class="button button-block button-positive" type="submit">
+                Inscription
+            </button>
+        </form>
     </ion-content>
 </ion-pane>

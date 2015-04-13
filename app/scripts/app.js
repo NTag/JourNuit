@@ -22,7 +22,7 @@ angular.module('jour-nuit', ['ionic', 'ngResource', 'jour-nuit-ctrl', 'jour-nuit
     });
 })
 
-.run(function($ionicPlatform, $state, checkEmail) {
+.run(function($ionicPlatform, $state, checkEmail, accessToken) {
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -35,6 +35,7 @@ angular.module('jour-nuit', ['ionic', 'ngResource', 'jour-nuit-ctrl', 'jour-nuit
 
         facebookConnectPlugin.getAccessToken(
             function (access_token) {
+                accessToken.set(access_token);
                 checkEmail.get({}, function () {
                     alert('Deja inscrit');
                 }, function () {

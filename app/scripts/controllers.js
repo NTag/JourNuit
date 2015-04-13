@@ -14,8 +14,13 @@ angular.module('jour-nuit-ctrl', [])
         );
     };
 })
-.controller('CheckEmailCtrl', function($scope) {
+.controller('CheckEmailCtrl', function($scope, accessToken, register) {
     console.log('checkemail');
-    
+    $scope.email = '';
+    $scope.register = function () {
+        var data = new register();
+        data.email = $scope.email;
+        data.$save();
+    };
 })
 ;
