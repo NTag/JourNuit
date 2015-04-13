@@ -26,6 +26,14 @@ angular.module('jour-nuit', ['ionic', 'jour-nuit-ctrl'])
         if(window.StatusBar) {
             StatusBar.styleDefault();
         }
+
+        facebookConnectPlugin.getAccessToken(
+            function (response) {
+                // Déjà connecté
+                alert(JSON.stringify(response));
+            },
+            function (response) { alert(JSON.stringify(response)) }
+        );
     });
 })
 ;

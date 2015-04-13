@@ -51,6 +51,8 @@ var platforms = _.filter(fs.readdirSync('platforms'), function (file) {
   return fs.statSync(path.resolve('platforms', file)).isDirectory();
 });
 _.each(platforms, function (platform) {
+    console.log(platform);
+    console.log(BASES[platform]);
   var base = path.resolve('platforms', platform, BASES[platform]);
   glob(base + '/**/*.png', function (err, files) {
     _.each(files, function (cordovaFile) {

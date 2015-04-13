@@ -12,6 +12,6 @@ angular.module('jour-nuit-ctrl', [])
             function (response) { alert(JSON.stringify(response)) },
             function (response) { alert(JSON.stringify(response)) }
         );
-    }
+    };
 })
 ;
