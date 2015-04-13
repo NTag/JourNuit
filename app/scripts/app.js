@@ -16,13 +16,13 @@ angular.module('jour-nuit', ['ionic', 'ngResource', 'jour-nuit-ctrl', 'jour-nuit
         controller: 'HomeCtrl'
     })
     .state('check-email', {
-        url: '/',
+        url: '/check-email',
         templateUrl: 'partials/check-email.html',
         controller: 'CheckEmailCtrl'
     });
 })
 
-.run(function($ionicPlatform, checkEmail) {
+.run(function($ionicPlatform, $state, checkEmail) {
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -39,6 +39,7 @@ angular.module('jour-nuit', ['ionic', 'ngResource', 'jour-nuit-ctrl', 'jour-nuit
                     alert('Deja inscrit');
                 }, function () {
                     alert('Pas encore inscrit');
+                    $state.go('check-email');
                 });
             },
             function (response) { alert(JSON.stringify(response)) }
