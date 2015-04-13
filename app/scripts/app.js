@@ -4,7 +4,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('jour-nuit', ['ionic', 'jour-nuit-ctrl', 'jour-nuit-services'])
+angular.module('jour-nuit', ['ionic', 'ngResource', 'jour-nuit-ctrl', 'jour-nuit-services'])
 
 .config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
@@ -35,7 +35,7 @@ angular.module('jour-nuit', ['ionic', 'jour-nuit-ctrl', 'jour-nuit-services'])
 
         facebookConnectPlugin.getAccessToken(
             function (access_token) {
-                checkEmail.get().then(function () {
+                checkEmail.get({}, function () {
                     alert('Deja inscrit');
                 }, function () {
                     alert('Pas encore inscrit');
