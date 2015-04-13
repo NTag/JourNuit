@@ -14,4 +14,8 @@ angular.module('jour-nuit-ctrl', [])
         );
     };
 })
+.controller('CheckEmailCtrl', function($scope) {
+    console.log('checkemail');
+    
+})
 ;
