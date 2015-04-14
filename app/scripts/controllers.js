@@ -16,11 +16,20 @@ angular.module('jour-nuit-ctrl', [])
 })
 .controller('CheckEmailCtrl', function($scope, accessToken, register) {
     console.log('checkemail');
-    $scope.email = '';
+    var infos = {
+        email: ''
+    };
+    $scope.infos = infos;
     $scope.register = function () {
         var data = new register();
-        data.email = $scope.email;
-        data.$save();
+        data.email = infos.email;
+        data.$save(function (r) {
+            alert('Succes');
+            console.log(r);
+        }, function (r) {
+            alert('Error');
+            console.log(r);
+        });
     };
 })
 ;
