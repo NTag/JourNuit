@@ -19,7 +19,13 @@ angular.module('jour-nuit', ['ionic', 'ngResource', 'jour-nuit-ctrl', 'jour-nuit
         url: '/check-email',
         templateUrl: 'partials/check-email.html',
         controller: 'CheckEmailCtrl'
-    });
+    })
+    .state('profile', {
+        url: '/profile',
+        templateUrl: 'partials/profile.html',
+        controller: 'ProfileCtrl'
+    })
+    ;
 })
 
 .run(function($ionicPlatform, $state, checkEmail, accessToken) {
@@ -38,6 +44,7 @@ angular.module('jour-nuit', ['ionic', 'ngResource', 'jour-nuit-ctrl', 'jour-nuit
                 accessToken.set(access_token);
                 checkEmail.get({s: access_token}, function () {
                     console.log('Deja inscrit');
+                    $state.go('profile');
                 }, function (r) {
                     console.log(r);
                     console.log('Pas encore inscrit');
