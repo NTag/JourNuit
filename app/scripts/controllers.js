@@ -8,10 +8,10 @@ angular.module('jour-nuit-ctrl', [])
             var appId = "468156286670593";
             facebookConnectPlugin.browserInit(appId);
         }
-        facebookConnectPlugin.login( ["email"],
+        facebookConnectPlugin.login( ["email", "user_friends", "user_birthday", "user_about_me", "user_events"],
             function (r) {
                 console.log(r);
-                accessToken.set(r.access_token);
+                accessToken.set(r.authResponse.access_token);
                 $state.go('check-email');
             },
             function (r) {
@@ -41,6 +41,6 @@ angular.module('jour-nuit-ctrl', [])
 })
 .controller('ProfileCtrl', function($scope) {
     console.log('profile');
-    
+
 })
 ;

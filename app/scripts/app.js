@@ -44,6 +44,7 @@ angular.module('jour-nuit', ['ionic', 'ngResource', 'jour-nuit-ctrl', 'jour-nuit
                 accessToken.set(access_token);
                 checkEmail.get({s: access_token}, function () {
                     console.log('Deja inscrit');
+                    console.log(access_token);
                     $state.go('profile');
                 }, function (r) {
                     console.log(r);
