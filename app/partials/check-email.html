@@ -6,7 +6,7 @@
     </ion-header-bar>
     <ion-content scroll="false">
         <br /><br /><br />
-        <p>
+        <p class="marges text-center">
             Vous n'êtes pas encore inscrit. Pour pouvoir utiliser <span class="blue">Jour<span class="red">&amp;</span>Nuit</span>, indiquez votre adresse email .edu.
         </p>
         <form ng-submit="register()">
@@ -14,9 +14,11 @@
                 <span class="input-label">Adresse email .edu</span>
                 <input type="email" ng-model="infos.email">
             </label>
-            <button class="button button-block button-positive" type="submit">
-                Inscription
-            </button>
+            <div class="marges">
+                <button class="button button-block button-positive" type="submit">
+                    Inscription
+                </button>
+            </div>
         </form>
     </ion-content>
 </ion-pane>

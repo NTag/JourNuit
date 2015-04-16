@@ -1,7 +1,7 @@
 'use strict';
 angular.module('jour-nuit-ctrl', [])
 
-.controller('HomeCtrl', function($scope) {
+.controller('HomeCtrl', function($scope, $state, accessToken) {
     console.log('home');
     $scope.fbLogin = function () {
         if (!window.cordova) {
@@ -9,8 +9,15 @@ angular.module('jour-nuit-ctrl', [])
             facebookConnectPlugin.browserInit(appId);
         }
         facebookConnectPlugin.login( ["email"],
-            function (response) { alert(JSON.stringify(response)) },
-            function (response) { alert(JSON.stringify(response)) }
+            function (r) {
+                console.log(r);
+                accessToken.set(r.access_token);
+                $state.go('check-email');
+            },
+            function (r) {
+                // Il a pas voulu se logguer, on fait rien
+                console.log(r);
+            }
         );
     };
 })

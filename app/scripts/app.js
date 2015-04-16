@@ -36,14 +36,18 @@ angular.module('jour-nuit', ['ionic', 'ngResource', 'jour-nuit-ctrl', 'jour-nuit
         facebookConnectPlugin.getAccessToken(
             function (access_token) {
                 accessToken.set(access_token);
-                checkEmail.get({}, function () {
-                    alert('Deja inscrit');
-                }, function () {
-                    alert('Pas encore inscrit');
+                checkEmail.get({s: access_token}, function () {
+                    console.log('Deja inscrit');
+                }, function (r) {
+                    console.log(r);
+                    console.log('Pas encore inscrit');
                     $state.go('check-email');
                 });
             },
-            function (response) { alert(JSON.stringify(response)) }
+            function (r) {
+                console.log('Pas Facebook connected');
+                console.log(response);
+            }
         );
     });
 })

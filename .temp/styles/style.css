@@ -8,3 +8,7 @@ body, h1 {
 .red {
     color: #D51E26;
 }
+.marges {
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+}
