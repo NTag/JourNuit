@@ -39,8 +39,15 @@ angular.module('jour-nuit-ctrl', [])
         });
     };
 })
-.controller('ProfileCtrl', function($scope) {
+.controller('ProfileCtrl', function($scope, profile) {
     console.log('profile');
-
+    $scope.user = profile.get(function (r) {
+        console.log(r);
+    }, function (r) {
+        console.log(r);
+    });
+    $scope.age = function (d) {
+        return Math.floor(((new Date()) - (new Date(d)))/(365*24*60*60*1000));
+    }
 })
 ;

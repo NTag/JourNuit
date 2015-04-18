@@ -1,5 +1,5 @@
 /* Your application styles go here */
-body, h1 {
+body {
     font-family: "Source Sans Pro";
 }
 .blue {
@@ -11,4 +11,8 @@ body, h1 {
 .marges {
     margin-left: 1.5em;
     margin-right: 1.5em;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Source Sans Pro";
+    color: #D51E26;
 }

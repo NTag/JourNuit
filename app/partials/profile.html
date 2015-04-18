@@ -1,10 +1,13 @@
 <ion-pane>
-    <ion-header-bar class="bar bar-header bar-light">
+    <ion-header-bar class="bar bar-header bar-light" style="background-color: #ECE8DC;">
         <h1 class="title" style="font-size: 3em;">
             <span class="blue">Jour<span class="red">&amp;</span>Nuit</span>
         </h1>
     </ion-header-bar>
     <ion-content scroll="false">
-        Profil
+        <div class="text-center">
+            <h1>{{ user.name }}</h1>
+            <h2>{{ age(user.birthday) }} ans</h2>
+        </div>
     </ion-content>
 </ion-pane>
