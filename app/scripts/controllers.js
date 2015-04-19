@@ -39,11 +39,11 @@ angular.module('jour-nuit-ctrl', [])
         });
     };
 })
-.controller('ProfileCtrl', function($scope, profile) {
+.controller('ProfileCtrl', function($scope, $ionicModal, profile) {
     console.log('profile');
     $scope.user = profile.get(function (r) {
         if (pictures.length == 0) {
-            
+
         }
         console.log(r);
     }, function (r) {
@@ -51,6 +51,23 @@ angular.module('jour-nuit-ctrl', [])
     });
     $scope.age = function (d) {
         return Math.floor(((new Date()) - (new Date(d)))/(365*24*60*60*1000));
+    };
+
+    $ionicModal.fromTemplateUrl('partials/pp-edit.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function(modal) {
+        $scope.modal = modal
+    });
+
+    $scope.openModal = function() {
+        $scope.modal.show()
     }
+    $scope.closeModal = function() {
+        $scope.modal.hide();
+    };
+    $scope.$on('$destroy', function() {
+        $scope.modal.remove();
+    });
 })
 ;
