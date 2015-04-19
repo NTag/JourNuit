@@ -25,6 +25,16 @@ angular.module('jour-nuit', ['ionic', 'ngResource', 'jour-nuit-ctrl', 'jour-nuit
         templateUrl: 'partials/profile.html',
         controller: 'ProfileCtrl'
     })
+    .state('ppedit', {
+        url: '/ppedit',
+        abstract: true,
+        template: '<ion-nav-view></ion-nav-view>'
+    })
+    .state('ppedit.facebook', {
+        url: '/facebook',
+        templateUrl: 'partials/ppedit/facebook.html',
+        controller: 'PPEditFacebookCtrl'
+    })
     ;
 })
 

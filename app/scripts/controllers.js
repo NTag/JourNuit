@@ -70,4 +70,24 @@ angular.module('jour-nuit-ctrl', [])
         $scope.modal.remove();
     });
 })
+.controller('PPEditFacebookCtrl', function($scope, $state, accessToken) {
+    console.log('pp edit facebook');
+    // $scope.fbLogin = function () {
+    //     if (!window.cordova) {
+    //         var appId = "468156286670593";
+    //         facebookConnectPlugin.browserInit(appId);
+    //     }
+    //     facebookConnectPlugin.login( ["email", "user_friends", "user_birthday", "user_about_me", "user_events"],
+    //         function (r) {
+    //             console.log(r);
+    //             accessToken.set(r.authResponse.access_token);
+    //             $state.go('check-email');
+    //         },
+    //         function (r) {
+    //             // Il a pas voulu se logguer, on fait rien
+    //             console.log(r);
+    //         }
+    //     );
+    // };
+})
 ;
