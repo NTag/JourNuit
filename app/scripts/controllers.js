@@ -42,6 +42,9 @@ angular.module('jour-nuit-ctrl', [])
 .controller('ProfileCtrl', function($scope, profile) {
     console.log('profile');
     $scope.user = profile.get(function (r) {
+        if (pictures.length == 0) {
+            
+        }
         console.log(r);
     }, function (r) {
         console.log(r);
