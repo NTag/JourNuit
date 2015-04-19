@@ -3,6 +3,12 @@
         <h1 class="title">Importation de Facebook</h1>
     </ion-header-bar>
     <ion-content>
-        Liste des photos de l'album Photos de profil, on tape sur une et paf.
+        <div class="padding">
+            Sélectionne une photo.<br />
+            <div class="text-center">
+                <div ng-repeat="photo in photos" class="pp small block" style="background-image: url('{{ photo.picture }}')">
+                </div>
+            </div>
+        </div>
     </ion-content>
 </ion-view>

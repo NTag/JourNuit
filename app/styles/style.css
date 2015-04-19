@@ -20,16 +20,22 @@ h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
     border: 3px solid #003E5C;
     margin: 1em;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
 }
 .pp.big {
 	height: 10em;
     width: 10em;
     border-radius: 5em;
 }
-.pp img {
-    height: 100%;
-    width: 100%;
+.pp.small {
+	height: 4em;
+    width: 4em;
+    border-radius: 2em;
+    margin: 0.2em;
 }
+
 .block {
     display: inline-block;
 }

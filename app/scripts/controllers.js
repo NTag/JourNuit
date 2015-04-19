@@ -8,10 +8,10 @@ angular.module('jour-nuit-ctrl', [])
             var appId = "468156286670593";
             facebookConnectPlugin.browserInit(appId);
         }
-        facebookConnectPlugin.login( ["email", "user_friends", "user_birthday", "user_about_me", "user_events"],
+        facebookConnectPlugin.login( ["email", "user_friends", "user_birthday", "user_about_me", "user_events", "user_photos"],
             function (r) {
                 console.log(r);
-                accessToken.set(r.authResponse.access_token);
+                accessToken.set(r.authResponse.accessToken);
                 $state.go('check-email');
             },
             function (r) {
@@ -72,22 +72,28 @@ angular.module('jour-nuit-ctrl', [])
 })
 .controller('PPEditFacebookCtrl', function($scope, $state, accessToken) {
     console.log('pp edit facebook');
-    // $scope.fbLogin = function () {
-    //     if (!window.cordova) {
-    //         var appId = "468156286670593";
-    //         facebookConnectPlugin.browserInit(appId);
-    //     }
-    //     facebookConnectPlugin.login( ["email", "user_friends", "user_birthday", "user_about_me", "user_events"],
-    //         function (r) {
-    //             console.log(r);
-    //             accessToken.set(r.authResponse.access_token);
-    //             $state.go('check-email');
-    //         },
-    //         function (r) {
-    //             // Il a pas voulu se logguer, on fait rien
-    //             console.log(r);
-    //         }
-    //     );
-    // };
+    // On récupère les albums
+    facebookConnectPlugin.api("me/albums", ["user_photos"],
+        function (r) {
+            //console.log(r);
+            // On récupère maintenant les photos de l'album "Photos de profil"
+            console.log("Albums retrieved");
+            console.log(r.data[0].id);
+            facebookConnectPlugin.api(r.data[0].id + "/photos", ["user_photos"],
+                function (rr) {
+                    //console.log(rr);
+                    console.log("Photos retrieved");
+                    $scope.photos = rr.data;
+                },
+                function (rr) {
+                    console.log(rr);
+                }
+            );
+        },
+        function (r) {
+            // Il a pas voulu se logguer, on fait rien
+            console.log(r);
+        }
+    );
 })
 ;
