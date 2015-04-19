@@ -70,7 +70,7 @@ angular.module('jour-nuit-ctrl', [])
         $scope.modal.remove();
     });
 })
-.controller('PPEditFacebookCtrl', function($scope, $state, accessToken) {
+.controller('PPEditFacebookCtrl', function($scope, $state, $http, accessToken) {
     console.log('pp edit facebook');
     // On récupère les albums
     facebookConnectPlugin.api("me/albums", ["user_photos"],
@@ -95,5 +95,30 @@ angular.module('jour-nuit-ctrl', [])
             console.log(r);
         }
     );
+
+    $scope.uploadPhoto = function (url) {
+        delete $http.defaults.headers.common['X-Requested-With']; // See note 2
+        $http.get(url, {responseType: "arraybuffer"}).
+          success(function(data) {
+            console.log("Read '" + url + "' with " + data.byteLength
+            + " bytes in a variable of type '" + typeof(data) + "'");
+            var form = new FormData();
+            form.append('pic', new Blob([data]));
+            $http.post('http://92.222.4.222/index.php/picture?s=' + accessToken.get(), form, {
+                transformRequest: angular.identity,
+                headers: {'Content-Type': undefined}
+            }).success(function (d) {
+                console.log('Succes');
+                console.log(d);
+                $state.go('profile');
+            }).error(function (d) {
+                console.log('Error');
+                console.log(d);
+            })
+          }).
+          error(function(data, status) {
+            console.log("Request failed with status: " + status);
+          });
+    };
 })
 ;

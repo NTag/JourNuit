@@ -6,7 +6,7 @@
         <div class="padding">
             Sélectionne une photo.<br />
             <div class="text-center">
-                <div ng-repeat="photo in photos" class="pp small block" style="background-image: url('{{ photo.picture }}')">
+                <div ng-repeat="photo in photos" class="pp small block" style="background-image: url('{{ photo.picture }}')" ng-click="uploadPhoto(photo.source)">
                 </div>
             </div>
         </div>
