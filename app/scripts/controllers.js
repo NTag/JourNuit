@@ -72,6 +72,9 @@ angular.module('jour-nuit-ctrl', [])
         $scope.modal.remove();
     });
 })
+.controller('MenuCtrl', function($scope) {
+    console.log('menu');
+})
 .controller('PPEditFacebookCtrl', function($scope, $state, $http, accessToken) {
     console.log('pp edit facebook');
     // On récupère les albums

@@ -25,6 +25,11 @@ angular.module('jour-nuit', ['ionic', 'ngResource', 'jour-nuit-ctrl', 'jour-nuit
         templateUrl: 'partials/profile.html',
         controller: 'ProfileCtrl'
     })
+    .state('menu', {
+        url: '/menu',
+        templateUrl: 'partials/menu.html',
+        controller: 'MenuCtrl'
+    })
     .state('ppedit', {
         url: '/ppedit',
         abstract: true,
