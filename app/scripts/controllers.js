@@ -39,7 +39,7 @@ angular.module('jour-nuit-ctrl', [])
         });
     };
 })
-.controller('ProfileCtrl', function($scope, $ionicModal, profile, events) {
+.controller('ProfileCtrl', function($scope, $state, $ionicModal, profile, events) {
     console.log('profile');
     $scope.ppimage = 'images/no-pp.jpg';
     $scope.user = profile.get(function (r) {
@@ -71,9 +71,16 @@ angular.module('jour-nuit-ctrl', [])
     $scope.$on('$destroy', function() {
         $scope.modal.remove();
     });
+
+    $scope.goToMenu = function () {
+        $state.go('menu');
+    };
 })
-.controller('MenuCtrl', function($scope) {
+.controller('MenuCtrl', function($scope, $state) {
     console.log('menu');
+    $scope.goToProfile = function () {
+        $state.go('profile');
+    };
 })
 .controller('PPEditFacebookCtrl', function($scope, $state, $http, accessToken) {
     console.log('pp edit facebook');
