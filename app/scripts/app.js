@@ -45,6 +45,11 @@ angular.module('jour-nuit', ['ionic', 'ngResource', 'jour-nuit-ctrl', 'jour-nuit
         templateUrl: 'partials/matchs.html',
         controller: 'MatchsCtrl'
     })
+    .state('arbre-soirees', {
+        url: '/arbre-soirees',
+        templateUrl: 'partials/arbre-soirees.html',
+        controller: 'ArbreSoireesCtrl'
+    })
     ;
 })
 

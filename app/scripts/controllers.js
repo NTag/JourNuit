@@ -91,6 +91,10 @@ angular.module('jour-nuit-ctrl', [])
         $state.go('menu');
     };
 })
+.controller('ArbreSoireesCtrl', function($scope) {
+    console.log('Arbre Soirées');
+
+})
 .controller('PPEditFacebookCtrl', function($scope, $state, $http, accessToken) {
     console.log('pp edit facebook');
     // On récupère les albums
