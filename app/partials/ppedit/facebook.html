@@ -6,7 +6,10 @@
         <div class="padding">
             Sélectionne une photo.<br />
             <div class="text-center">
-                <div ng-repeat="photo in photos" class="pp small block" style="background-image: url('{{ photo.picture }}')" ng-click="uploadPhoto(photo.source)">
+                <div ng-repeat="photo in photos" class="pp small block" style="background-image: url('{{ photo.picture }}')" ng-click="(isinupload = true) && uploadPhoto(photo.source)">
+                    <div class="load" ng-if="isinupload">
+                        <ion-spinner class="loader"></ion-spinner>
+                    </div>
                 </div>
             </div>
         </div>
