@@ -24,5 +24,10 @@
             <span class="red">Soirées</span>
             <span class="blue">auxquelles je participe</span>
         </div>
+        <ul class="list">
+            <li class="item ellispis" ng-repeat="event in events">
+                {{ event.name }}
+            </li>
+        </ul>
     </ion-content>
 </ion-pane>

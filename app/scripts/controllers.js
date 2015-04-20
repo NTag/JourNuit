@@ -39,7 +39,7 @@ angular.module('jour-nuit-ctrl', [])
         });
     };
 })
-.controller('ProfileCtrl', function($scope, $ionicModal, profile) {
+.controller('ProfileCtrl', function($scope, $ionicModal, profile, events) {
     console.log('profile');
     $scope.ppimage = 'images/no-pp.jpg';
     $scope.user = profile.get(function (r) {
@@ -53,6 +53,7 @@ angular.module('jour-nuit-ctrl', [])
     $scope.age = function (d) {
         return Math.floor(((new Date()) - (new Date(d)))/(365*24*60*60*1000));
     };
+    $scope.events = events.query();
 
     $ionicModal.fromTemplateUrl('partials/pp-edit.html', {
         scope: $scope,

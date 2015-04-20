@@ -20,4 +20,7 @@ angular.module('jour-nuit-services', [])
 .factory('profile', ['$resource', 'accessToken', function($resource, accessToken) {
     return $resource('http://92.222.4.222/index.php/profile/:id', {s: accessToken.get(), id: '@id'});
 }])
+.factory('events', ['$resource', 'accessToken', function($resource, accessToken) {
+    return $resource('http://92.222.4.222/index.php/events/:id', {s: accessToken.get(), id: '@id'});
+}])
  ;
