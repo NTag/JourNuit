@@ -40,6 +40,11 @@ angular.module('jour-nuit', ['ionic', 'ngResource', 'jour-nuit-ctrl', 'jour-nuit
         templateUrl: 'partials/ppedit/facebook.html',
         controller: 'PPEditFacebookCtrl'
     })
+    .state('matchs', {
+        url: '/matchs',
+        templateUrl: 'partials/matchs.html',
+        controller: 'MatchsCtrl'
+    })
     ;
 })
 

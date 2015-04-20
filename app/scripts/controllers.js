@@ -81,6 +81,15 @@ angular.module('jour-nuit-ctrl', [])
     $scope.goToProfile = function () {
         $state.go('profile');
     };
+    $scope.goToMatchs = function () {
+        $state.go('matchs');
+    };
+})
+.controller('MatchsCtrl', function($scope, $state) {
+    console.log('matchs');
+    $scope.goToMenu = function () {
+        $state.go('menu');
+    };
 })
 .controller('PPEditFacebookCtrl', function($scope, $state, $http, accessToken) {
     console.log('pp edit facebook');
