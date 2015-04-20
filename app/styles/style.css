@@ -85,3 +85,12 @@ li.item.fond {
   /*stroke: #444;
   fill: #444;*/
 }
+.bar-header.double {
+    height: 110px !important;
+}
+h1.double {
+    height: 110px !important;
+}
+.double-header {
+    top: 110px !important;
+}
