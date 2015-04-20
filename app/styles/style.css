@@ -94,3 +94,17 @@ h1.double {
 .double-header {
     top: 110px !important;
 }
+.item .pp {
+    float: right;
+    margin: 0;
+    height: 4em;
+    width: 4em;
+    border-radius: 2em;
+}
+.item.small {
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+.font-medium {
+    font-size: 1.5em;
+}
