@@ -41,9 +41,10 @@ angular.module('jour-nuit-ctrl', [])
 })
 .controller('ProfileCtrl', function($scope, $ionicModal, profile) {
     console.log('profile');
+    $scope.ppimage = 'images/no-pp.jpg';
     $scope.user = profile.get(function (r) {
-        if (pictures.length == 0) {
-
+        if (r.pictures.length > 0) {
+            $scope.ppimage = r.pictures[0];
         }
         console.log(r);
     }, function (r) {
@@ -84,6 +85,7 @@ angular.module('jour-nuit-ctrl', [])
                     //console.log(rr);
                     console.log("Photos retrieved");
                     $scope.photos = rr.data;
+                    console.log(rr.data.length + ' photos');
                 },
                 function (rr) {
                     console.log(rr);
