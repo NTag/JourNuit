@@ -60,3 +60,15 @@ h1, h2, h3, h4, h5, h6 {
 li.item.fond {
     background: linear-gradient(180deg, #e3e4e5, white 10px);
 }
+.sbackground {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-image: url('../images/background.jpg');
+}
+.fb-button {
+    position: absolute;
+    bottom: 20%;
+    left: 6%;
+    right: 6%;
+}
