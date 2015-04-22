@@ -104,21 +104,25 @@ angular.module('jour-nuit-ctrl', [])
             // On récupère maintenant les photos de l'album "Photos de profil"
             console.log("Albums retrieved");
             console.log(r.data[0].id);
+            alert("Albums retrieved: " + r.data.length);
             facebookConnectPlugin.api(r.data[0].id + "/photos", ["user_photos"],
                 function (rr) {
                     //console.log(rr);
                     console.log("Photos retrieved");
                     $scope.photos = rr.data;
                     console.log(rr.data.length + ' photos');
+                    alert(rr.data.length + ' photos');
                 },
                 function (rr) {
                     console.log(rr);
+                    alert("Erreur photos!");
                 }
             );
         },
         function (r) {
             // Il a pas voulu se logguer, on fait rien
             console.log(r);
+            alert("Erreur albums!");
         }
     );
 
