@@ -111,6 +111,125 @@ angular.module('jour-nuit-ctrl', [])
 .controller('ArbreSoireesCtrl', function($scope) {
     console.log('Arbre Soirées');
 
+
+    // Gestion de l'arbre
+    var arbre = {
+        // Liste d'objets
+        //  {
+        //      centre: {x: float, y: float},
+        //      rayon: float,
+        //      titre: string,
+        //      stitre: string,
+        //      img: string
+        //  }
+        cercles: [],
+        // data : liste d'objets
+        //  {
+        //      importance: float (entre 0 et 1),
+        //      titre: string,
+        //      stitre: string,
+        //      img: string
+        //  }
+        loadFromData: function (data) {
+            console.log("debut");
+            // Paramètres pour iPhone 6 Plus
+            // Dimensions en pixels
+            var height = 580;
+            var width = 420;
+            var limitrmax = 200;
+            var limitrmin = 10;
+
+            this.cercles = [];
+            var nb = data.length;
+
+            // Importances minimale et somme
+            var imin = 1;
+            var isum = 0;
+            for (var i = 0; i < nb; i++) {
+                if (data[i].importance < imin) {
+                    imin = data[i].importance;
+                }
+                isum += data[i].importance;
+            }
+
+            var rmoyen = Math.min(limitrmax, height/nb);
+            var imoyen = isum/nb;
+
+            var lastCentre, i, e, rayon, centre;
+            var lastx = width/4;
+            var n = 0;
+            while (data.length > 0) {
+                n++;
+                i = Math.floor(Math.random()*data.length);
+                e = data[i];
+                data.splice(i, 1);
+                var c = {
+                    titre: e.titre,
+                    stitre: e.stitre,
+                    img: e.img
+                };
+
+                // intervention limitrmin, limitrmax ?
+                rayon = rmoyen*(1+(1+Math.random()/4)*(e.importance - imoyen));
+
+
+                // centre = {
+                //     x: (0.9+0.2*Math.random())*width-(0.8+0.8*Math.random())*lastx,
+                //     y: rmoyen*n*(1+0.1*(Math.random() - 0.5)) - rmoyen/1.5
+                // };
+                centre = {
+                    x: Math.min(Math.max(width*(0.25+0.5*(n%2))+width*0.15*(0.5-Math.random()), rayon/2), width-rayon/1.7),
+                    y: rmoyen*n*(1+0.1*(Math.random() - 0.5))
+                };
+
+                lastx = centre.x;
+
+                c.centre = centre;
+                c.rayon = rayon;
+                c.bordure = Math.max(2, Math.min(10, rayon/50));
+                c.fontsize = (c.bordure+6)*3;
+                this.cercles.push(c);
+            }
+            console.log("fini");
+        }
+    };
+
+    var faussesDonnees = [
+        {
+            titre: "Point Gamma",
+            stitre: "4 500 participants",
+            importance: 1
+        },
+        {
+            titre: "Gala HEC",
+            stitre: "2 000 participants",
+            importance: 0.7
+        },
+        {
+            titre: "Équinoxe",
+            stitre: "1 300 participants",
+            importance: 0.4
+        },
+        {
+            titre: "Vibes #3",
+            stitre: "83 participants",
+            importance: 0.1
+        },
+        {
+            titre: "Last Styx",
+            stitre: "230 participants",
+            importance: 0.2
+        // },
+        // {
+        //     titre: "X-Tra",
+        //     stitre: "900 participants",
+        //     importance: 0.3
+        }
+    ];
+    arbre.loadFromData(faussesDonnees);
+
+    $scope.cercles = arbre.cercles;
+
 })
 .controller('PPEditFacebookCtrl', function($scope, $state, $http, accessToken) {
     console.log('pp edit facebook');
