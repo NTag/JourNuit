@@ -39,12 +39,13 @@ angular.module('jour-nuit-ctrl', [])
         });
     };
 })
-.controller('ProfileCtrl', function($scope, $state, $ionicModal, profile, events) {
+.controller('ProfileCtrl', function($rootScope, $scope, $state, $ionicModal, profile, events, picture) {
     console.log('profile');
     $scope.ppimage = 'images/no-pp.jpg';
     $scope.user = profile.get(function (r) {
         if (r.pictures.length > 0) {
-            $scope.ppimage = r.pictures[0];
+            $scope.ppimage = picture(r.pictures[r.pictures.length - 1]);
+            console.log(picture(r.pictures[0]));
         }
         console.log(r);
     }, function (r) {
@@ -75,6 +76,22 @@ angular.module('jour-nuit-ctrl', [])
     $scope.goToMenu = function () {
         $state.go('menu');
     };
+
+    $rootScope.$on('$stateChangeSuccess',
+        function(event, toState, toParams, fromState, fromParams) {
+            if (toState.name == "profile" && fromState.name.indexOf('ppedit') == 0) {
+                $scope.user = profile.get(function (r) {
+                    if (r.pictures.length > 0) {
+                        $scope.ppimage = picture(r.pictures[r.pictures.length - 1]);
+                        console.log(picture(r.pictures[0]));
+                    }
+                    console.log(r);
+                }, function (r) {
+                    console.log(r);
+                });
+            }
+        }
+    );
 })
 .controller('MenuCtrl', function($scope, $state) {
     console.log('menu');
@@ -104,25 +121,22 @@ angular.module('jour-nuit-ctrl', [])
             // On récupère maintenant les photos de l'album "Photos de profil"
             console.log("Albums retrieved");
             console.log(r.data[0].id);
-            alert("Albums retrieved: " + r.data.length);
             facebookConnectPlugin.api(r.data[0].id + "/photos", ["user_photos"],
                 function (rr) {
                     //console.log(rr);
                     console.log("Photos retrieved");
                     $scope.photos = rr.data;
                     console.log(rr.data.length + ' photos');
-                    alert(rr.data.length + ' photos');
+                    $scope.$apply();
                 },
                 function (rr) {
                     console.log(rr);
-                    alert("Erreur photos!");
                 }
             );
         },
         function (r) {
             // Il a pas voulu se logguer, on fait rien
             console.log(r);
-            alert("Erreur albums!");
         }
     );
 
