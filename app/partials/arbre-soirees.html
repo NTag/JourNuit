@@ -1,9 +1,13 @@
 <ion-pane>
     <ion-content scroll="false">
         <div ng-repeat="c in cercles" class="dcircle" ng-click="selectCercle(c)" ng-if="!c.hidden" style="position: fixed; top: {{ c.centre.y-c.rayon/2 }}px; left: {{ c.centre.x-c.rayon/2 }}px; text-align: center;">
-            <div class="circle" style="height: {{ c.rayon }}px; width: {{ c.rayon }}px; border: {{ c.bordure }}px solid #D51E26; margin: 0 auto;">
+            <div ng-class="c.animate && 'tourner' || ''">
+                <div class="circle" style="height: {{ c.rayon }}px; width: {{ c.rayon }}px; border: {{ c.bordure }}px solid #D51E26; margin: 0 auto;">
+                    <div class="lcircle" ng-if="c.animate">
+                    </div>
+                </div>
             </div>
-            <div style="line-height: {{ c.fontsize*0.8 }}px; margin-top: 10px;">
+            <div style="line-height: {{ c.fontsize*0.8 }}px; margin-top: {{ c.animate && '50' || '10' }}px;">
                 <span class="blue" style="font-size: {{ c.fontsize }}px;">{{ c.titre }}</span><br />
                 <span class="red" style="font-size: {{ c.fontsize*0.7 }}px;">{{ c.stitre }}</span>
             </div>

@@ -122,7 +122,8 @@ angular.module('jour-nuit-ctrl', [])
         //      titre: string,
         //      stitre: string,
         //      img: string,
-        //      hidden: boolean
+        //      hidden: boolean,
+        //      animate: boolean
         //  }
         cercles: [],
         // data : liste d'objets
@@ -170,7 +171,8 @@ angular.module('jour-nuit-ctrl', [])
                     titre: e.titre,
                     stitre: e.stitre,
                     img: e.img,
-                    hidden: false
+                    hidden: false,
+                    animate: false
                 };
 
                 // intervention limitrmin, limitrmax ?
@@ -209,6 +211,7 @@ angular.module('jour-nuit-ctrl', [])
                 x: 210,
                 y: 400
             };
+            c.animate = true;
         }
     };
 
