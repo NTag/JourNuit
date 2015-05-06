@@ -1,6 +1,6 @@
 <ion-pane>
     <ion-content scroll="false">
-        <div ng-repeat="c in cercles" style="position: fixed; top: {{ c.centre.y-c.rayon/2 }}px; left: {{ c.centre.x-c.rayon/2 }}px; text-align: center;">
+        <div ng-repeat="c in cercles" class="dcircle" ng-click="selectCercle(c)" ng-if="!c.hidden" style="position: fixed; top: {{ c.centre.y-c.rayon/2 }}px; left: {{ c.centre.x-c.rayon/2 }}px; text-align: center;">
             <div class="circle" style="height: {{ c.rayon }}px; width: {{ c.rayon }}px; border: {{ c.bordure }}px solid #D51E26; margin: 0 auto;">
             </div>
             <div style="line-height: {{ c.fontsize*0.8 }}px; margin-top: 10px;">

@@ -116,11 +116,13 @@ angular.module('jour-nuit-ctrl', [])
     var arbre = {
         // Liste d'objets
         //  {
+        //      id: string,
         //      centre: {x: float, y: float},
         //      rayon: float,
         //      titre: string,
         //      stitre: string,
-        //      img: string
+        //      img: string,
+        //      hidden: boolean
         //  }
         cercles: [],
         // data : liste d'objets
@@ -164,9 +166,11 @@ angular.module('jour-nuit-ctrl', [])
                 e = data[i];
                 data.splice(i, 1);
                 var c = {
+                    id: e.id,
                     titre: e.titre,
                     stitre: e.stitre,
-                    img: e.img
+                    img: e.img,
+                    hidden: false
                 };
 
                 // intervention limitrmin, limitrmax ?
@@ -191,31 +195,50 @@ angular.module('jour-nuit-ctrl', [])
                 this.cercles.push(c);
             }
             console.log("fini");
+        },
+
+        selectCercle: function (c) {
+            for (var i = 0; i < this.cercles.length; i++) {
+                if (c.id != this.cercles[i].id) {
+                    this.cercles[i].hidden = true;
+                }
+            }
+            c.rayon = 200;
+            c.bordure = 6;
+            c.centre = {
+                x: 210,
+                y: 400
+            };
         }
     };
 
     var faussesDonnees = [
         {
+            id: 1,
             titre: "Point Gamma",
             stitre: "4 500 participants",
             importance: 1
         },
         {
+            id: 2,
             titre: "Gala HEC",
             stitre: "2 000 participants",
             importance: 0.7
         },
         {
+            id: 3,
             titre: "Équinoxe",
             stitre: "1 300 participants",
             importance: 0.4
         },
         {
+            id: 4,
             titre: "Vibes #3",
             stitre: "83 participants",
             importance: 0.1
         },
         {
+            id: 5,
             titre: "Last Styx",
             stitre: "230 participants",
             importance: 0.2
@@ -229,6 +252,7 @@ angular.module('jour-nuit-ctrl', [])
     arbre.loadFromData(faussesDonnees);
 
     $scope.cercles = arbre.cercles;
+    $scope.selectCercle = arbre.selectCercle;
 
 })
 .controller('PPEditFacebookCtrl', function($scope, $state, $http, accessToken) {

@@ -109,6 +109,12 @@ h1.double {
     font-size: 1.5em;
 }
 
+.dcircle {
+    -webkit-transition-property: top, left, opacity;
+    -webkit-transition-duration: 0.5s;
+}
 .circle {
 	border-radius: 50%;
+    -webkit-transition-property: height, width, opacity;
+    -webkit-transition-duration: 0.5s;
 }
