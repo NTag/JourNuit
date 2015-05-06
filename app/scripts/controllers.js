@@ -200,6 +200,7 @@ angular.module('jour-nuit-ctrl', [])
         },
 
         selectCercle: function (c) {
+            $scope.searching = true;
             for (var i = 0; i < this.cercles.length; i++) {
                 if (c.id != this.cercles[i].id) {
                     this.cercles[i].hidden = true;
@@ -254,6 +255,7 @@ angular.module('jour-nuit-ctrl', [])
     ];
     arbre.loadFromData(faussesDonnees);
 
+    $scope.searching = false;
     $scope.cercles = arbre.cercles;
     $scope.selectCercle = arbre.selectCercle;
 

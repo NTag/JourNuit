@@ -116,12 +116,13 @@ h1.double {
 .circle {
 	border-radius: 50%;
     -webkit-transition-property: height, width, opacity;
-    -webkit-transition-duration: 0.8s;
+    -webkit-transition-duration: 1s;
 }
 .ng-leave {
-    opacity: 0;
-    -webkit-transition-property: opacity;
-    -webkit-transition-duration: 0.8s;
+    -webkit-animation: depart 1s linear;
+}
+.ng-enter {
+    -webkit-animation: arrivee 1s linear;
 }
 .lcircle {
     border-radius: 50%;
@@ -136,3 +137,17 @@ h1.double {
 }
 @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
 @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+@-webkit-keyframes depart { 100% { opacity: 0; } }
+@keyframes depart { 100% { opacity: 0; } }
+
+@-webkit-keyframes arrivee { 0% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes arrivee { 0% { opacity: 0; } 100% { opacity: 1; } }
+
+#trecherche {
+    position: absolute;
+    bottom: 60px;
+    font-size: 30px;
+    width: 100%;
+    text-align: center;
+}
