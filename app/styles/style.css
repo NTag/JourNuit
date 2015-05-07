@@ -118,10 +118,10 @@ h1.double {
     -webkit-transition-property: height, width, opacity;
     -webkit-transition-duration: 1s;
 }
-.ng-leave {
+.dcircle.ng-leave, #trecherche.ng-leave {
     -webkit-animation: depart 1s linear;
 }
-.ng-enter {
+#trecherche.ng-enter {
     -webkit-animation: arrivee 1s linear;
 }
 .lcircle {

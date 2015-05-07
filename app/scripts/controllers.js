@@ -108,7 +108,7 @@ angular.module('jour-nuit-ctrl', [])
         $state.go('menu');
     };
 })
-.controller('ArbreSoireesCtrl', function($scope) {
+.controller('ArbreSoireesCtrl', function($scope, $timeout) {
     console.log('Arbre Soirées');
 
 
@@ -213,6 +213,32 @@ angular.module('jour-nuit-ctrl', [])
                 y: 400
             };
             c.animate = true;
+
+            $timeout(function() {
+                arbre.loadResult(c, [{id: 1}, {id: 2}, {id: 3}]);
+                //$scope.$apply();
+            }, 4000);
+        },
+        // cercle: le cercle sélectionné
+        // personnes: liste d'objets { id, photo }
+        loadResult: function (cercle, personnes) {
+            $scope.searching = false;
+            cercle.animate = false;
+
+            this.cercles = [cercle];
+            cercle.centre = {
+                x: 210,
+                y: 560
+            };
+            cercle.rayon = 140;
+            cercle.bordure = 3;
+
+            this.cercles.push({id: personnes[0].id, rayon: 100, centre: {x: 210, y:420}, bordure: 2, hidden: false});
+            this.cercles.push({id: personnes[1].id, rayon: 100, centre: {x: 95, y:480}, bordure: 2, hidden: false});
+            this.cercles.push({id: personnes[2].id, rayon: 100, centre: {x: 325, y:480}, bordure: 2, hidden: false});
+
+            $scope.$apply();
+            console.log(this.cercles);
         }
     };
 
@@ -256,8 +282,7 @@ angular.module('jour-nuit-ctrl', [])
     arbre.loadFromData(faussesDonnees);
 
     $scope.searching = false;
-    $scope.cercles = arbre.cercles;
-    $scope.selectCercle = arbre.selectCercle;
+    $scope.arbre = arbre;
 
 })
 .controller('PPEditFacebookCtrl', function($scope, $state, $http, accessToken) {
