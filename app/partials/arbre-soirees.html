@@ -2,7 +2,7 @@
     <ion-content scroll="false">
         <div ng-repeat="c in arbre.cercles" class="dcircle" ng-click="arbre.selectCercle(c)" ng-if="!c.hidden" style="position: fixed; top: {{ c.centre.y-c.rayon/2 }}px; left: {{ c.centre.x-c.rayon/2 }}px; text-align: center;">
             <div ng-class="c.animate && 'tourner' || ''">
-                <div class="circle" style="height: {{ c.rayon }}px; width: {{ c.rayon }}px; border: {{ c.bordure }}px solid #D51E26; margin: 0 auto;">
+                <div class="circle ppb" style="height: {{ c.rayon }}px; width: {{ c.rayon }}px; border: {{ c.bordure }}px solid #D51E26; margin: 0 auto; background-image: url('{{ c.img }}')">
                     <div class="lcircle" ng-if="c.animate">
                     </div>
                 </div>

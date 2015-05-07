@@ -109,7 +109,7 @@ angular.module('jour-nuit-ctrl', [])
         $state.go('menu');
     };
 })
-.controller('ArbreSoireesCtrl', function($scope, $timeout, myevents) {
+.controller('ArbreSoireesCtrl', function($scope, $timeout, myevents, picture) {
     console.log('Arbre Soirées');
 
 
@@ -173,7 +173,8 @@ angular.module('jour-nuit-ctrl', [])
                     stitre: e.stitre,
                     img: e.img,
                     hidden: false,
-                    animate: false
+                    animate: false,
+                    friends: e.friends
                 };
 
                 // intervention limitrmin, limitrmax ?
@@ -216,7 +217,7 @@ angular.module('jour-nuit-ctrl', [])
             c.animate = true;
 
             $timeout(function() {
-                arbre.loadResult(c, [{id: 1}, {id: 2}, {id: 3}]);
+                arbre.loadResult(c, c.friends);
                 //$scope.$apply();
             }, 4000);
         },
@@ -233,11 +234,13 @@ angular.module('jour-nuit-ctrl', [])
             };
             cercle.rayon = 140;
             cercle.bordure = 3;
+            console.log('la');
+            console.log(personnes);
 
-            this.cercles.push({id: personnes[0].id, rayon: 100, centre: {x: 210, y:420}, bordure: 2, hidden: false});
-            this.cercles.push({id: personnes[1].id, rayon: 100, centre: {x: 95, y:480}, bordure: 2, hidden: false});
-            this.cercles.push({id: personnes[2].id, rayon: 100, centre: {x: 325, y:480}, bordure: 2, hidden: false});
-
+            this.cercles.push({id: personnes[0].facebookUserId, rayon: 100, centre: {x: 210, y:420}, bordure: 2, hidden: false, img: picture(personnes[0].pictures[personnes[0].pictures.length-1]) });
+            //this.cercles.push({id: personnes[1].id, rayon: 100, centre: {x: 95, y:480}, bordure: 2, hidden: false});
+            //this.cercles.push({id: personnes[2].id, rayon: 100, centre: {x: 325, y:480}, bordure: 2, hidden: false});
+            console.log('ici');
             $scope.$apply();
             console.log(this.cercles);
         }
@@ -303,7 +306,8 @@ angular.module('jour-nuit-ctrl', [])
                 id: e[i].event.id,
                 titre: ename,
                 stitre: Math.floor(e[i].totalBirdie*(200+Math.random()*100)+Math.random()*100+Math.random()*10+Math.random()) + ' participants',
-                importance: e[i].totalBirdie/max
+                importance: e[i].totalBirdie/max,
+                friends: e[i].friends
             });
         }
         arbre.loadFromData(donnees);
