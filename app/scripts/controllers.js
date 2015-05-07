@@ -45,6 +45,7 @@ angular.module('jour-nuit-ctrl', [])
     $scope.user = profile.get(function (r) {
         if (r.pictures.length > 0) {
             $scope.ppimage = picture(r.pictures[r.pictures.length - 1]);
+            $scope.simage = picture(r.school.pictureId);
             console.log(picture(r.pictures[0]));
         }
         console.log(r);
