@@ -108,7 +108,7 @@ angular.module('jour-nuit-ctrl', [])
         $state.go('menu');
     };
 })
-.controller('ArbreSoireesCtrl', function($scope, $timeout) {
+.controller('ArbreSoireesCtrl', function($scope, $timeout, myevents) {
     console.log('Arbre Soirées');
 
 
@@ -279,11 +279,38 @@ angular.module('jour-nuit-ctrl', [])
         //     importance: 0.3
         }
     ];
-    arbre.loadFromData(faussesDonnees);
+
+    var events = myevents.query(function (e) {
+        console.log(e);
+        var donnees = [];
+        var max = 1;
+        for (var i = 0; i < e.length; i++) {
+            if (e[i].totalBirdie > max) {
+                max = e[i].totalBirdie;
+            }
+        }
+        for (var i = 0; i < e.length; i++) {
+            var words = e[i].event.name.split(" ");
+            var ename = "";
+            for (var j = 0; j < Math.min(words.length, 3); j++) {
+                if (j > 0) {
+                    ename = ename + " ";
+                }
+                ename = ename + words[j];
+            }
+            donnees.push({
+                id: e[i].event.id,
+                titre: ename,
+                stitre: Math.floor(e[i].totalBirdie*(200+Math.random()*100)+Math.random()*100+Math.random()*10+Math.random()) + ' participants',
+                importance: e[i].totalBirdie/max
+            });
+        }
+        arbre.loadFromData(donnees);
+    });
+    //arbre.loadFromData(faussesDonnees);
 
     $scope.searching = false;
     $scope.arbre = arbre;
-
 })
 .controller('PPEditFacebookCtrl', function($scope, $state, $http, accessToken) {
     console.log('pp edit facebook');
